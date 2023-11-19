@@ -31,9 +31,17 @@ class Registrasi : AppCompatActivity() {
             val email = binding.edtEmailRegister.text.toString()
             val password = binding.edtPasswordRegister.text.toString()
 
+
             //Validasi email
             if (email.isEmpty()) {
                 binding.edtEmailRegister.error = "Email Harus Diisi"
+                binding.edtEmailRegister.requestFocus()
+                return@setOnClickListener
+            }
+
+            //Validasi email tidak sesuai
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.edtEmailRegister.error = "Email Tidak Valid"
                 binding.edtEmailRegister.requestFocus()
                 return@setOnClickListener
             }
@@ -44,6 +52,14 @@ class Registrasi : AppCompatActivity() {
                 binding.edtPasswordRegister.requestFocus()
                 return@setOnClickListener
             }
+
+            //Validasi panjang password
+            if (password.length < 6) {
+                binding.edtPasswordRegister.error = "Password Minimal 6 Karakter"
+                binding.edtPasswordRegister.requestFocus()
+                return@setOnClickListener
+            }
+
 
             RegisterFirebase(email, password)
         }
