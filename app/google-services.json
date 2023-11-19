@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1012915318958",
+    "project_id": "mancingku-fa98f",
+    "storage_bucket": "mancingku-fa98f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012915318958:android:413c88932250942148fd3f",
+        "android_client_info": {
+          "package_name": "com.example.mancingku"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG1SB2kUw9vvew_ggngckapdFXwL8eaUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
