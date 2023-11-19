@@ -53,7 +53,7 @@ class Login : AppCompatActivity() {
 
             //Validasi password
             if (password.isEmpty()){
-                binding.edtPasswordLogin.error = "Password Harus Diisi"
+                binding.edtPasswordLogin.error = "Password Harus Diisi Dulu"
                 binding.edtPasswordLogin.requestFocus()
                 return@setOnClickListener
             }
