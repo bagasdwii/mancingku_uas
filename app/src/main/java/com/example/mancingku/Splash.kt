@@ -28,7 +28,7 @@ class Splash : AppCompatActivity() {
                 startActivity(Intent(this@Splash, MainActivity::class.java))
             } else {
                 // Pengguna belum masuk sebelumnya, arahkan ke LoginActivity
-                startActivity(Intent(this@Splash, Login::class.java))
+                startActivity(Intent(this@Splash, Registrasi::class.java))
             }
             finish()
         }, 3000)
