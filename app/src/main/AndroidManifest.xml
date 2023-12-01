@@ -50,7 +50,7 @@
             android:name=".activity.MainActivity"
             android:exported="false" />
 
-  
+
     </application>
 
 </manifest>
