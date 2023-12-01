@@ -11,18 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide
-import com.example.mancingku.Login
-import com.example.mancingku.R
+import com.example.mancingku.activity.Login
 import com.example.mancingku.databinding.FragmentUserBinding
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 
@@ -198,7 +192,7 @@ class UserFragment : Fragment() {
     private fun btnLogout() {
         auth = FirebaseAuth.getInstance()
         auth.signOut()
-        val intent = Intent(context,Login::class.java)
+        val intent = Intent(context, Login::class.java)
         startActivity(intent)
         activity?.finish()
     }
@@ -236,12 +230,10 @@ class UserFragment : Fragment() {
             REQ_IMAGE -> {
                 // Penanganan hasil pemilihan gambar dari galeri
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    imgUri?.let { uri ->
-                        val bitmap: Bitmap? = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
-                        bitmap?.let {
-                            uploadImgToFirebase(bitmap)
-                            binding.cviUser.setImageBitmap(bitmap)
-                        }
+                    val bitmap: Bitmap? = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, data.data)
+                    bitmap?.let {
+                        uploadImgToFirebase(bitmap)
+                        binding.cviUser.setImageBitmap(bitmap)
                     }
                 }
             }
@@ -280,6 +272,6 @@ class UserFragment : Fragment() {
     }
     companion object{
         const val REQ_CAM = 100
-        const val REQ_IMAGE = 100
+        const val REQ_IMAGE = 200
     }
 }
