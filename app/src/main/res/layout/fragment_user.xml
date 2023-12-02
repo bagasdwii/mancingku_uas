@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:padding="30dp"
-    tools:context=".Login">
+    tools:context=".activity.Login">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -98,6 +98,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFC107"
                 android:text="Change Password" />
+            <Button
+                android:id="@+id/btn_admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF8107"
+                android:text="Admin" />
 
             <Button
                 android:id="@+id/btn_logout"
@@ -108,7 +114,7 @@
 
         </LinearLayout>
 
-//card view untuk ganti password
+
     </androidx.cardview.widget.CardView>
 
 
