@@ -67,8 +67,10 @@ class SpotPancingFragment : Fragment() {
                 for (snapshot in dataSnapshot.children) {
                     val alamat = snapshot.child("alamat").getValue(String::class.java) ?: ""
                     val namaspot = snapshot.child("namaspot").getValue(String::class.java) ?: ""
+                    val deskripsi = snapshot.child("deskripsispot").getValue(String::class.java) ?: ""
+                    val linkMaps = snapshot.child("linkspot").getValue(String::class.java) ?: ""
 
-                    val spot = modelSpotMancing(alamat, namaspot)
+                    val spot = modelSpotMancing(alamat, namaspot, deskripsi, linkMaps)
                     spotList.add(spot)
                 }
 

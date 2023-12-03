@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mancingku.R
 import com.example.mancingku.model.modelSpotMancing
+import com.example.mancingku.fragment.SpotPancingFragmentDirections
 
 class RecyclerSpotManvcingAdapter(private val spotList: List<modelSpotMancing>) :
     RecyclerView.Adapter<RecyclerSpotManvcingAdapter.SpotMancingViewHolder>() {
@@ -20,6 +22,16 @@ class RecyclerSpotManvcingAdapter(private val spotList: List<modelSpotMancing>) 
     override fun onBindViewHolder(holder: SpotMancingViewHolder, position: Int) {
         val spot = spotList[position]
         holder.bind(spot)
+        holder.itemView.setOnClickListener {
+            // Mengakses NavController dan melakukan navigasi ke DetailFragment dengan argumen yang diperlukan
+            val action = SpotPancingFragmentDirections.actionSpotPancingFragmentToDetailFragment(
+                spot.namaspot,
+                spot.alamat,
+                spot.deskripsispot,
+                spot.linkspot
+            )
+            it.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

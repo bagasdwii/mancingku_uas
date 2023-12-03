@@ -9,7 +9,11 @@
         android:id="@+id/spotPancingFragment"
         android:name="com.example.mancingku.fragment.SpotPancingFragment"
         android:label="fragment_spot_pancing"
-        tools:layout="@layout/fragment_spot_pancing" />
+        tools:layout="@layout/fragment_spot_pancing" >
+        <action
+            android:id="@+id/action_spotPancingFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.mancingku.fragment.MainFragment"
@@ -18,5 +22,22 @@
         <action
             android:id="@+id/action_mainFragment_to_spotPancingFragment"
             app:destination="@id/spotPancingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.mancingku.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="namaTempat"
+            app:argType="string" />
+        <argument
+            android:name="alamat"
+            app:argType="string" />
+        <argument
+            android:name="deskripsi"
+            app:argType="string" />
+        <argument android:name="linkMaps"
+            app:argType="string" />
     </fragment>
 </navigation>
