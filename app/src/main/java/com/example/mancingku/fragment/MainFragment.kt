@@ -29,26 +29,17 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+        setUpBottomNav()
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpBottomNav()
+
     }
 
     private fun setUpBottomNav() {
-        childFragmentManager.beginTransaction()
-            .add(R.id.container, fragmentHome)
-            .add(R.id.container, fragmentMaps)
-            .add(R.id.container, fragmentPost)
-            .add(R.id.container, fragmentUser)
-            .hide(fragmentMaps)
-            .hide(fragmentPost)
-            .hide(fragmentUser)
-            .show(fragmentHome)
-            .commit()
-
         bottomNavigationView = binding.navView
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -59,14 +50,32 @@ class MainFragment : Fragment() {
             }
             true
         }
+
+        // Cek fragmentHome agar tidak duplikat saat pertama kali setup
+        if (!fragmentHome.isAdded) {
+            childFragmentManager.beginTransaction()
+                .add(R.id.container, fragmentHome)
+                .commit()
+        }
     }
 
+
     private fun callFragment(fragment: Fragment) {
-        childFragmentManager.beginTransaction()
-            .hide(active)
-            .show(fragment)
-            .commit()
-        active = fragment
+        if (fragment.isAdded) {
+            // Fragment sudah ditambahkan sebelumnya, cukup tampilkan kembali
+            childFragmentManager.beginTransaction()
+                .hide(active)
+                .show(fragment)
+                .commit()
+            active = fragment
+        } else {
+            // Fragment belum ditambahkan, tambahkan ke dalam FragmentManager
+            childFragmentManager.beginTransaction()
+                .hide(active)
+                .add(R.id.container, fragment)
+                .commit()
+            active = fragment
+        }
     }
 }
 

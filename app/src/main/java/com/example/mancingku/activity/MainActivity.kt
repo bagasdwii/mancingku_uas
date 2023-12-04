@@ -3,6 +3,10 @@ package com.example.mancingku.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.mancingku.R
 
 
@@ -16,10 +20,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
-//        navController=navHostFragment.navController
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController=navHostFragment.navController
+        NavigationUI.setupActionBarWithNavController(this, navController)
 //        val bottomNavigationView=findViewById<BottomNavigationView>(R.id.)
-//        setupActionBarWithNavController()
+
 
 //        @Suppress("UNUSED_VARIABLE")
 //        binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 //
 //        NavigationUI.setupWithNavController(binding.fragmentContainer, navController)
         // Check if a specific fragment needs to be loaded
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        return NavigationUI.navigateUp(navController, null)
     }
 //    val fragmentHome: Fragment = HomeFragment()
 //    val fragmentMaps: Fragment = MapsFragment()

@@ -4,28 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.SpotPancingFragment">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:layout_marginBottom="10dp">
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:background="?attr/colorPrimary"-->
+<!--        android:layout_marginBottom="10dp">-->
 
-<!--        &lt;!&ndash; TextView sebagai judul spot mancing &ndash;&gt;-->
-        <TextView
-            android:id="@+id/tSpot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Spot Mancing"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:layout_gravity="center"/>
+<!--&lt;!&ndash;        &lt;!&ndash; TextView sebagai judul spot mancing &ndash;&gt;&ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tSpot"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Spot Mancing"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:layout_gravity="center"/>-->
 
 
-    </androidx.appcompat.widget.Toolbar>
+<!--    </androidx.appcompat.widget.Toolbar>-->
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/toolbar"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"

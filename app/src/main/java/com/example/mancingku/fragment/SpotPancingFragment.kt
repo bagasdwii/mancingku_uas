@@ -49,14 +49,14 @@ class SpotPancingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.rvSpot)
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
-
-        val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
-        actionBar?.apply {
-            setDisplayHomeAsUpEnabled(true) // Menampilkan tombol back
-            title = "" // Mengatur judul toolbar
-        }
+//        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+//        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+//
+//        val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
+//        actionBar?.apply {
+//            setDisplayHomeAsUpEnabled(true) // Menampilkan tombol back
+//            title = "" // Mengatur judul toolbar
+//        }
 
         val databaseReference = FirebaseDatabase.getInstance().getReference("spot-mancing")
 
