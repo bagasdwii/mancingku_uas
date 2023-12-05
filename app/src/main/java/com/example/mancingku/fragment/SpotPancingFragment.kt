@@ -75,8 +75,7 @@ class SpotPancingFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val spotList = mutableListOf<modelSpotMancing>()
 
-                for (snapshot in dataSnapshot.children) {
-                    val key = snapshot.ref.key
+                for (snapshot in dataSnapshot.children) { val key = snapshot.ref.key
                     val alamat = snapshot.child("alamat").getValue(String::class.java) ?: ""
                     val namaspot = snapshot.child("namaspot").getValue(String::class.java) ?: ""
                     val deskripsi = snapshot.child("deskripsispot").getValue(String::class.java) ?: ""
@@ -86,27 +85,20 @@ class SpotPancingFragment : Fragment() {
                     spotList.add(spot)
 
                     // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
-                    val storageRef = FirebaseStorage.getInstance().reference.child("img_spot/${snapshot.child("alamat").getValue(String::class.java)}/image.jpg")
+                    val storageRef = FirebaseStorage.getInstance().reference.child("img_spot/${snapshot.key}/image.jpg")
 
                     storageRef.downloadUrl.addOnSuccessListener { uri ->
                         // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
                         spot.imgURL = uri.toString()
-                        adapter.notifyDataSetChanged() // Perbarui tampilan RecyclerView
                     }.addOnFailureListener {
                         // Handle error jika gagal mengambil URL gambar dari Cloud Storage
                     }
                 }
 
-
                 // Gunakan spotList dalam RecyclerViewAdapter
                 val adapter = RecyclerSpotManvcingAdapter(spotList)
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 recyclerView.adapter = adapter
-
-                // Set URL gambar ke setiap entri dalam RecyclerView
-
-
-
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

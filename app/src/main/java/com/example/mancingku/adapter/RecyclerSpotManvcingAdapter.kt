@@ -46,6 +46,7 @@ class RecyclerSpotManvcingAdapter(private val spotList: List<modelSpotMancing>) 
         fun bind(spot: modelSpotMancing) {
             txtNamaSpot.text = spot.namaspot
             txtAlamat.text = spot.alamat
+
         }
     }
 }
