@@ -6,21 +6,18 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mancingku.R
-import com.example.mancingku.activity.Login
 import com.example.mancingku.adapter.RecyclerSpotManvcingAdapter
-import com.example.mancingku.databinding.FragmentSpotPancingBinding
-import com.example.mancingku.fragment.UserFragment.Companion.REQ_IMAGE
-import com.example.mancingku.model.modelSpotMancing
+import com.example.mancingku.adapter.RecyclerTokoFragment
+import com.example.mancingku.databinding.FragmentTokoBinding
+import com.example.mancingku.model.modelToko
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,11 +27,10 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.util.UUID
-import kotlin.random.Random
 
+class tokoFragment : Fragment() {
+    private var _binding : FragmentTokoBinding? = null
 
-class SpotPancingFragment : Fragment() {
-    private var _binding : FragmentSpotPancingBinding? = null
     fun generateUniqueKey(): String {
         return UUID.randomUUID().toString()
     }
@@ -43,14 +39,14 @@ class SpotPancingFragment : Fragment() {
     private lateinit var imgUri : Uri
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference
-    private lateinit var adapter: RecyclerSpotManvcingAdapter
+    private lateinit var adapter: RecyclerTokoFragment
 //    private lateinit var spotList: MutableList<modelSpotMancing>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSpotPancingBinding.inflate(inflater, container, false)
+        _binding = FragmentTokoBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onDestroy() {
@@ -69,28 +65,28 @@ class SpotPancingFragment : Fragment() {
 //            title = "" // Mengatur judul toolbar
 //        }
 
-        val databaseReference = FirebaseDatabase.getInstance().getReference("spot-mancing")
+        val databaseReference = FirebaseDatabase.getInstance().getReference("toko-mancing")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val spotList = mutableListOf<modelSpotMancing>()
+                val tokoList = mutableListOf<modelToko>()
 
                 for (snapshot in dataSnapshot.children) {
                     val key = snapshot.ref.key
                     val alamat = snapshot.child("alamat").getValue(String::class.java) ?: ""
-                    val namaspot = snapshot.child("namaspot").getValue(String::class.java) ?: ""
-                    val deskripsi = snapshot.child("deskripsispot").getValue(String::class.java) ?: ""
-                    val linkMaps = snapshot.child("linkspot").getValue(String::class.java) ?: ""
+                    val namaspot = snapshot.child("namatoko").getValue(String::class.java) ?: ""
+                    val deskripsi = snapshot.child("deskripsitoko").getValue(String::class.java) ?: ""
+                    val linkMaps = snapshot.child("linktoko").getValue(String::class.java) ?: ""
 
-                    val spot = modelSpotMancing(alamat, namaspot, deskripsi, linkMaps, "")
-                    spotList.add(spot)
+                    val toko = modelToko(alamat, namaspot, deskripsi, linkMaps, "")
+                    tokoList.add(toko)
 
                     // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
-                    val storageRef = FirebaseStorage.getInstance().reference.child("img_spot/${snapshot.child("alamat").getValue(String::class.java)}/image.jpg")
+                    val storageRef = FirebaseStorage.getInstance().reference.child("img_toko/${snapshot.child("alamat").getValue(String::class.java)}/image.jpg")
 
                     storageRef.downloadUrl.addOnSuccessListener { uri ->
                         // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
-                        spot.imgURL = uri.toString()
+                        toko.imgURL = uri.toString()
                         adapter.notifyDataSetChanged() // Perbarui tampilan RecyclerView
                     }.addOnFailureListener {
                         // Handle error jika gagal mengambil URL gambar dari Cloud Storage
@@ -99,7 +95,7 @@ class SpotPancingFragment : Fragment() {
 
 
                 // Gunakan spotList dalam RecyclerViewAdapter
-                val adapter = RecyclerSpotManvcingAdapter(spotList)
+                val adapter = RecyclerTokoFragment(tokoList)
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 recyclerView.adapter = adapter
 
@@ -124,7 +120,6 @@ class SpotPancingFragment : Fragment() {
         if (user != null && user.email == admin) {
             binding.btnAdd.visibility = View.VISIBLE
 
-
         } else {
             binding.btnAdd.visibility = View.GONE
 
@@ -140,45 +135,45 @@ class SpotPancingFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
             .getReferenceFromUrl("https://mancingku-fa98f-default-rtdb.firebaseio.com/")
 
-        binding.slotSpot.visibility = View.VISIBLE
-        binding.imgSpot.setOnClickListener {
+        binding.slotToko.visibility = View.VISIBLE
+        binding.imgToko.setOnClickListener {
             goToImg()
         }
         binding.btnCancel.setOnClickListener {
-            binding.slotSpot.visibility = View.GONE
+            binding.slotToko.visibility = View.GONE
         }
 
         binding.btnConfirm.setOnClickListener {
             val userEmail = user?.email // Mengambil email dari currentUser
             val alamat = binding.edtAlamat.text.toString()
-            val namaspot = binding.edtNama.text.toString()
-            val deskripsispot = binding.edtDeskripsi.text.toString()
-            val linkspot = binding.edtLink.text.toString()
+            val namatoko = binding.edtNama.text.toString()
+            val deskripsitoko = binding.edtDeskripsi.text.toString()
+            val linktoko = binding.edtLink.text.toString()
 
 
-            if (userEmail.isNullOrEmpty() || alamat.isEmpty() || namaspot.isEmpty() || deskripsispot.isEmpty() || linkspot.isEmpty()) {
+            if (userEmail.isNullOrEmpty() || alamat.isEmpty() || namatoko.isEmpty() || deskripsitoko.isEmpty() || linktoko.isEmpty()) {
                 Toast.makeText(
                     activity,
                     "Ada Data Yang Masih Kosong!!",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                val spotRef = database.child("spot-mancing").child(uniqueKey) // Menggunakan push untuk membuat key unik
+                val tokoRef = database.child("toko-mancing").child(uniqueKey) // Menggunakan push untuk membuat key unik
 
-                val spotData = HashMap<String, Any>()
-                spotData["user"] = userEmail
-                spotData["alamat"] = alamat
-                spotData["namaspot"] = namaspot
-                spotData["deskripsispot"] = deskripsispot
-                spotData["linkspot"] = linkspot
+                val tokoData = HashMap<String, Any>()
+                tokoData["user"] = userEmail
+                tokoData["alamat"] = alamat
+                tokoData["namatoko"] = namatoko
+                tokoData["deskripsitoko"] = deskripsitoko
+                tokoData["linktoko"] = linktoko
 
-                spotRef.setValue(spotData)
+                tokoRef.setValue(tokoData)
                     .addOnSuccessListener {
-                        Toast.makeText(activity, "Spot Mancing Berhasil diTambahkan", Toast.LENGTH_SHORT).show()
-                        binding.slotSpot.visibility = View.GONE
+                        Toast.makeText(activity, "toko Mancing Berhasil di Tambahkan", Toast.LENGTH_SHORT).show()
+                        binding.slotToko.visibility = View.GONE
                     }
                     .addOnFailureListener {
-                        Toast.makeText(activity, "Gagal menambahkan spot mancing", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Gagal menambahkan toko mancing", Toast.LENGTH_SHORT).show()
                     }
             }
         }
@@ -193,7 +188,7 @@ class SpotPancingFragment : Fragment() {
 
         activity?.packageManager?.let {
             chooser.resolveActivity(it)?.also {
-                startActivityForResult(chooser, REQ_IMAGE)
+                startActivityForResult(chooser, UserFragment.REQ_IMAGE)
             }
         }
     }
@@ -206,7 +201,7 @@ class SpotPancingFragment : Fragment() {
                     val imgBitmap = data?.extras?.get("data") as? Bitmap
                     imgBitmap?.let {
                         uploadImgToFirebase(imgBitmap)
-                        binding.imgSpot.setImageBitmap(imgBitmap) // Tampilkan gambar dari kamera ke ImageView
+                        binding.imgToko.setImageBitmap(imgBitmap) // Tampilkan gambar dari kamera ke ImageView
                         // Lakukan sesuatu dengan imgBitmap yang tidak null
                     } ?: run {
                         // Handle kasus ketika imgBitmap null
@@ -214,13 +209,13 @@ class SpotPancingFragment : Fragment() {
 
                 }
             }
-            REQ_IMAGE -> {
+            UserFragment.REQ_IMAGE -> {
                 // Penanganan hasil pemilihan gambar dari galeri
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     val bitmap: Bitmap? = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, data.data)
                     bitmap?.let {
                         uploadImgToFirebase(bitmap)
-                        binding.imgSpot.setImageBitmap(bitmap)
+                        binding.imgToko.setImageBitmap(bitmap)
                     }
                 }
             }
@@ -239,7 +234,7 @@ class SpotPancingFragment : Fragment() {
                     ref.downloadUrl.addOnCompleteListener { Task->
                         Task.result.let{ Uri ->
                             imgUri = Uri
-                            binding.imgSpot.setImageBitmap(imgBitmap)
+                            binding.imgToko.setImageBitmap(imgBitmap)
                         }
                     }
                 }

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainFragment_to_spotPancingFragment"
             app:destination="@id/spotPancingFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_tokoFragment"
+            app:destination="@id/tokoFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -39,5 +42,17 @@
             app:argType="string" />
         <argument android:name="linkMaps"
             app:argType="string" />
+        <argument
+            android:name="imgDetail"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tokoFragment"
+        android:name="com.example.mancingku.fragment.tokoFragment"
+        android:label="Toko Panving"
+        tools:layout="@layout/fragment_toko" >
+        <action
+            android:id="@+id/action_tokoFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

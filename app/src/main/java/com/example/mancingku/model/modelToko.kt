@@ -1,11 +1,10 @@
 package com.example.mancingku.model
 
+data class modelToko (
 
-data class modelSpotMancing(
     val alamat: String = "",
-    val namaspot: String = "",
-    val deskripsispot: String = "",
-    val linkspot: String = "",
+    val namatoko: String = "",
+    val deskripsitoko: String = "",
+    val linktoko: String = "",
     var imgURL: String = "" // Properti untuk menyimpan URL gambar
 )
-

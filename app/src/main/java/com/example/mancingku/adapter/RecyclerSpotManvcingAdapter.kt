@@ -28,7 +28,8 @@ class RecyclerSpotManvcingAdapter(private val spotList: List<modelSpotMancing>) 
                 spot.namaspot,
                 spot.alamat,
                 spot.deskripsispot,
-                spot.linkspot
+                spot.linkspot,
+                spot.imgURL
             )
             it.findNavController().navigate(action)
         }

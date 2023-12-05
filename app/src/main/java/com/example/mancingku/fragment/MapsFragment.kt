@@ -32,6 +32,10 @@ class MapsFragment : Fragment() {
             val navController = findNavController(view)
             navController.navigate(MainFragmentDirections.actionMainFragmentToSpotPancingFragment())
         }
+        binding.tokoPancing.setOnClickListener {
+            val navController = findNavController(view)
+            navController.navigate(MainFragmentDirections.actionMainFragmentToTokoFragment())
+        }
         if (user != null) {
             binding.welcomeMessageTextView.setText("Selamat Datang " + getUsernameFromEmail(user.email ?: ""))
         }
