@@ -72,7 +72,7 @@ class tokoFragment : Fragment() {
                 val tokoList = mutableListOf<modelToko>()
 
                 for (snapshot in dataSnapshot.children) {
-                    val key = snapshot.ref.key
+//                    val key = snapshot.ref.key
                     val alamat = snapshot.child("alamat").getValue(String::class.java) ?: ""
                     val namaspot = snapshot.child("namatoko").getValue(String::class.java) ?: ""
                     val deskripsi = snapshot.child("deskripsitoko").getValue(String::class.java) ?: ""
@@ -82,12 +82,12 @@ class tokoFragment : Fragment() {
                     tokoList.add(toko)
 
                     // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
-                    val storageRef = FirebaseStorage.getInstance().reference.child("img_toko/${snapshot.child("alamat").getValue(String::class.java)}/image.jpg")
+                    val storageRef = FirebaseStorage.getInstance().reference.child("img_toko/${snapshot.key}/image.jpg")
+
 
                     storageRef.downloadUrl.addOnSuccessListener { uri ->
                         // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
                         toko.imgURL = uri.toString()
-                        adapter.notifyDataSetChanged() // Perbarui tampilan RecyclerView
                     }.addOnFailureListener {
                         // Handle error jika gagal mengambil URL gambar dari Cloud Storage
                     }
@@ -223,7 +223,7 @@ class tokoFragment : Fragment() {
     }
     private fun uploadImgToFirebase(imgBitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
-        val ref = FirebaseStorage.getInstance().reference.child("img_spot/$uniqueKey/image.jpg")
+        val ref = FirebaseStorage.getInstance().reference.child("img_toko/$uniqueKey/image.jpg")
 
         imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
 

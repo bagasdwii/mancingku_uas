@@ -75,7 +75,8 @@ class SpotPancingFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val spotList = mutableListOf<modelSpotMancing>()
 
-                for (snapshot in dataSnapshot.children) { val key = snapshot.ref.key
+                for (snapshot in dataSnapshot.children) {
+//                    val key = snapshot.ref.key
                     val alamat = snapshot.child("alamat").getValue(String::class.java) ?: ""
                     val namaspot = snapshot.child("namaspot").getValue(String::class.java) ?: ""
                     val deskripsi = snapshot.child("deskripsispot").getValue(String::class.java) ?: ""

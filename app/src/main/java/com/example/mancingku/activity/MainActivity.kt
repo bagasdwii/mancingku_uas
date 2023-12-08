@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.mancingku.R
+import com.example.mancingku.fragment.MainFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController=navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+
 //        val bottomNavigationView=findViewById<BottomNavigationView>(R.id.)
 
 

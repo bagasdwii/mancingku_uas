@@ -18,7 +18,7 @@
         android:padding="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/cvi_user"
+            android:id="@+id/cvi_userpost"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="top"
@@ -30,13 +30,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/edt_email"
+                android:id="@+id/edt_emailpost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:text="Email@mail.com"
                 android:textSize="12dp"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvlokasi"
