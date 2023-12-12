@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.mancingku.R
 import com.example.mancingku.databinding.FragmentPostBinding
 import com.example.mancingku.fragment.UserFragment.Companion.REQ_IMAGE
@@ -27,7 +28,7 @@ class PostFragment : Fragment() {
     fun generateUniqueKey(): String {
         return UUID.randomUUID().toString()
     }
-    val uniqueKey = generateUniqueKey()
+    var uniqueKey = generateUniqueKey()
     lateinit var auth : FirebaseAuth
     private lateinit var imgUri : Uri
     private val binding get() = _binding!!
@@ -41,6 +42,14 @@ class PostFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        //kondisi user sedang login atau tidak
+        if (user != null) {
+            binding.usernamePost.setText(getUsernameFromEmail(user.email ?: ""))
+            binding.emailPost.setText(user.email)
+            loadProfileImage()
+        }
         binding.btnConfirm.setOnClickListener {
             Posting()
         }
@@ -83,9 +92,16 @@ class PostFragment : Fragment() {
                 .addOnFailureListener {
                     Toast.makeText(activity, "Gagal menambahkan spot mancing", Toast.LENGTH_SHORT).show()
                 }
+            uniqueKey = generateUniqueKey()
+            binding.edtStatus.setText("")
+            binding.edtLink.setText("")
+            binding.img.setImageResource(R.drawable.img_white)
+
         }
     }
-
+    private fun getUsernameFromEmail(email: String): String {
+        return email.substringBefore('@')
+    }
     private fun Gambar() {
         val intentCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         val intentGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -146,5 +162,17 @@ class PostFragment : Fragment() {
                     }
                 }
             }
+    }
+    private fun loadProfileImage() {
+        val ref = FirebaseStorage.getInstance().reference.child("img_user/${FirebaseAuth.getInstance().currentUser?.email}")
+        ref.downloadUrl.addOnSuccessListener { uri ->
+            // Menggunakan library seperti Picasso atau Glide untuk memuat gambar ke ImageView
+            // Contoh menggunakan Glide
+            Glide.with(this)
+                .load(uri)
+                .into(binding.cviUserpost)
+        }.addOnFailureListener {
+            // Handle kegagalan memuat gambar
+        }
     }
 }

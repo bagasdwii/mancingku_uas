@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.MapsFragment">
 
     <LinearLayout
@@ -21,10 +23,32 @@
             android:textSize="18sp" />
 
         <!-- Bagian Atas: Carousel -->
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/carouselViewPager"
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/carousel"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="0"
+            app:iss_period="3000"
+            app:iss_placeholder="@color/black"
+            app:iss_error_image="@color/white"
+            app:iss_corner_radius="20"
+            android:layout_margin="10dp"
+            >
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_buttton_add"
+                android:text="" />
+        </com.denzcoskun.imageslider.ImageSlider>
+
 
         <!-- Bagian Tengah: CardBox dengan 2 Button -->
         <LinearLayout
@@ -93,6 +117,102 @@
             android:text="Deskripsi singkat tentang aplikasi ini."
             android:textSize="16sp" />
     </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/slotEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Info Event"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/edt_titleevent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Judul"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edt_alamatevent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alamat"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/edt_namaevent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Tempat"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edt_deskripsievent"
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:hint="Deskripsi"
+                android:gravity="top|start"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/edt_linkevent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Link Google Maps"
+                android:inputType="text"
+                android:linksClickable="true"
+                android:autoLink="web|email"
+                android:layout_marginBottom="10dp"/>
+            <ImageView
+                android:id="@+id/img_event"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_image"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cancelevent"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/black"
+                    android:text="Cancel" />
+
+                <Button
+                    android:id="@+id/btn_confirmevent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+
+                    android:text="Confirm" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </FrameLayout>

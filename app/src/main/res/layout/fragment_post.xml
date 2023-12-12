@@ -1,86 +1,128 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     tools:context=".fragment.PostFragment">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/mPosting"
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/cairo_extrabold"
+        android:text=" NEW POST "
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="9dp" />
 
-        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/cvi_userpost"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="top"
+                android:background="@drawable/ic_account"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/username_post"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Status "
-                android:textAlignment="center"
-                android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginStart="10dp"
+                android:text="Username"
+                android:textSize="16sp"
+                android:fontFamily="@font/cairo_extrabold"
 
+                app:layout_constraintBottom_toTopOf="@id/email_post"
+                app:layout_constraintStart_toEndOf="@id/cvi_userpost"
+                app:layout_constraintTop_toTopOf="@id/cvi_userpost" />
+
+            <TextView
+                android:id="@+id/email_post"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Email@gmail.com"
+                android:fontFamily="@font/cairo_light"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/cvi_userpost"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cvi_userpost"
+                app:layout_constraintTop_toBottomOf="@id/username_post" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/edt_Status"
                 android:layout_width="match_parent"
-                android:layout_height="122dp"
-                android:hint="Deskripsi"
-                android:gravity="top|start"
-                android:inputType="text" />
-            <EditText
-                android:id="@+id/edt_link"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Link Google Maps"
-                android:inputType="text"
-                android:linksClickable="true"
-                android:autoLink="web|email"
-                android:layout_marginBottom="10dp"/>
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_image"/>
+                android:background="@drawable/custom_edt"
+                android:fontFamily="@font/cairo_semibold"
+                android:gravity="top|start"
+                android:hint="Caption"
+                android:inputType="textMultiLine|text"
+                android:minLines="6"
+                android:padding="10dp"
+                android:textColor="@color/white" />
+        </ScrollView>
+
+        <EditText
+            android:id="@+id/edt_link"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginBottom="10dp"
+            android:autoLink="web|email"
+            android:background="@drawable/custom_edt"
+            android:fontFamily="@font/cairo_semibold"
+            android:hint="Link Google Maps"
+            android:inputType="text"
+            android:linksClickable="true"
+            android:padding="10dp"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/img_white" />
 
 
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_btn"
+            android:fontFamily="@font/cairo_extrabold"
+            android:text="POST"
+            android:textColor="@color/black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="2"
-                    android:backgroundTint="@color/black"
-                    android:text="Cancel" />
+    </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-
-                    android:text="Confirm" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
