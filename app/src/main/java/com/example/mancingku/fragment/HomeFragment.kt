@@ -27,6 +27,7 @@ import java.util.UUID
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
+    private lateinit var adapter: RecyclerPost
     fun generateUniqueKey(): String {
         return UUID.randomUUID().toString()
     }
@@ -59,7 +60,9 @@ class HomeFragment : Fragment() {
 //        }
 
         val databaseReference = FirebaseDatabase.getInstance().getReference("post-mancing")
-
+        adapter = RecyclerPost(emptyList())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val postList = mutableListOf<modelPost>()
@@ -70,24 +73,26 @@ class HomeFragment : Fragment() {
                     val linkpost = snapshot.child("linkpost").getValue(String::class.java) ?: ""
                     val status = snapshot.child("status").getValue(String::class.java) ?: ""
 
-                    val post = modelPost(username, linkpost, status, "","")
+                    val post = modelPost(snapshot.key!!, username, linkpost, status, "","")
                     postList.add(post)
 
                     // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
-                    val storageRef = FirebaseStorage.getInstance().reference.child("img_post/${snapshot.key}/image.jpg")
-                    val storageRefProfil = FirebaseStorage.getInstance().reference.child("img_user/${username}")
-                    storageRef.downloadUrl.addOnSuccessListener { uri ->
-                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
-                        post.gambar = uri.toString()
-                    }.addOnFailureListener {
-                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
-                    }
-                    storageRefProfil.downloadUrl.addOnSuccessListener { uri ->
-                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
-                        post.profil = uri.toString()
-                    }.addOnFailureListener {
-                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
-                    }
+//                    val storageRef = FirebaseStorage.getInstance().reference.child("img_post/${snapshot.key}/image.jpg")
+//                    val storageRefProfil = FirebaseStorage.getInstance().reference.child("img_user/${username}")
+//                    storageRef.downloadUrl.addOnSuccessListener { uri ->
+//                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
+//                        post.gambar = uri.toString()
+//                        adapter.notifyDataSetChanged()
+//
+//                    }.addOnFailureListener {
+//                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+//                    }
+//                    storageRefProfil.downloadUrl.addOnSuccessListener { uri ->
+//                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
+//                        post.profil = uri.toString()
+//                    }.addOnFailureListener {
+//                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+//                    }
                 }
 
 
@@ -95,10 +100,10 @@ class HomeFragment : Fragment() {
                 val adapter = RecyclerPost(postList)
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 recyclerView.adapter = adapter
+                adapter.notifyDataSetChanged()
 
                 // Set URL gambar ke setiap entri dalam RecyclerView
 
-                adapter.notifyDataSetChanged()
 //iki sing tk tanbah
             }
 

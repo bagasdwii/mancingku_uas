@@ -25,11 +25,7 @@ class RecyclerTokoFragment(private val tokoList: List<modelToko>) :
         holder.itemView.setOnClickListener {
             // Mengakses NavController dan melakukan navigasi ke DetailFragment dengan argumen yang diperlukan
             val action = tokoFragmentDirections.actionTokoFragmentToDetailFragment(
-                toko.namatoko,
-                toko.alamat,
-                toko.deskripsitoko,
-                toko.linktoko,
-                toko.imgURL
+              toko
             )
             it.findNavController().navigate(action)
         }

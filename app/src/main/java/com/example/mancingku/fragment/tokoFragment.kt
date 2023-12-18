@@ -78,19 +78,19 @@ class tokoFragment : Fragment() {
                     val deskripsi = snapshot.child("deskripsitoko").getValue(String::class.java) ?: ""
                     val linkMaps = snapshot.child("linktoko").getValue(String::class.java) ?: ""
 
-                    val toko = modelToko(alamat, namaspot, deskripsi, linkMaps, "")
+                    val toko = modelToko(snapshot.key!!, alamat, namaspot, deskripsi, linkMaps, "")
                     tokoList.add(toko)
-
-                    // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
-                    val storageRef = FirebaseStorage.getInstance().reference.child("img_toko/${snapshot.key}/image.jpg")
-
-
-                    storageRef.downloadUrl.addOnSuccessListener { uri ->
-                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
-                        toko.imgURL = uri.toString()
-                    }.addOnFailureListener {
-                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
-                    }
+//
+//                    // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
+//                    val storageRef = FirebaseStorage.getInstance().reference.child("img_toko/${snapshot.key}/image.jpg")
+//
+//
+//                    storageRef.downloadUrl.addOnSuccessListener { uri ->
+//                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
+//                        toko.imgURL = uri.toString()
+//                    }.addOnFailureListener {
+//                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+//                    }
                 }
 
 

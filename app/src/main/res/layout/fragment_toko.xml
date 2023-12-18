@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#064273"
+    android:background="#1D267D"
     tools:context=".fragment.tokoFragment">
     <!--    <androidx.appcompat.widget.Toolbar-->
     <!--        android:id="@+id/toolbar"-->
@@ -60,15 +60,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="#0C134F"
             android:padding="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" Info Alamat"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cairo_black"
                 android:textAlignment="center"
                 android:layout_margin="10dp"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -76,12 +79,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Alamat"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+
+                android:fontFamily="@font/cairo_semibold"
                 android:inputType="text" />
             <EditText
                 android:id="@+id/edt_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama Tempat"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+
+                android:fontFamily="@font/cairo_semibold"
                 android:inputType="text" />
 
             <EditText
@@ -89,6 +100,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="122dp"
                 android:hint="Deskripsi"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+
+                android:fontFamily="@font/cairo_semibold"
                 android:gravity="top|start"
                 android:inputType="text" />
             <EditText
@@ -97,6 +112,10 @@
                 android:layout_height="wrap_content"
                 android:hint="Link Google Maps"
                 android:inputType="text"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+
+                android:fontFamily="@font/cairo_semibold"
                 android:linksClickable="true"
                 android:autoLink="web|email"
                 android:layout_marginBottom="10dp"/>
@@ -105,7 +124,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/ic_image"/>
+                android:background="@drawable/custom_edt"
+                android:src="@drawable/ic_image"/>
 
 
 
@@ -120,6 +140,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="2"
+                    android:fontFamily="serif"
+                    android:textColor="@color/white"
                     android:backgroundTint="@color/black"
                     android:text="Cancel" />
 
@@ -129,7 +151,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/cairo_semibold"
                     android:text="Confirm" />
 
             </LinearLayout>

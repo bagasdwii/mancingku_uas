@@ -60,6 +60,7 @@ class SpotPancingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = view.findViewById(R.id.rvSpot)
+
 //        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
 //        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
 //
@@ -82,23 +83,25 @@ class SpotPancingFragment : Fragment() {
                     val deskripsi = snapshot.child("deskripsispot").getValue(String::class.java) ?: ""
                     val linkMaps = snapshot.child("linkspot").getValue(String::class.java) ?: ""
 
-                    val spot = modelSpotMancing(alamat, namaspot, deskripsi, linkMaps, "")
+                    val spot = modelSpotMancing(snapshot.key!!, alamat, namaspot, deskripsi, linkMaps, "")
                     spotList.add(spot)
-
-                    // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
-                    val storageRef = FirebaseStorage.getInstance().reference.child("img_spot/${snapshot.key}/image.jpg")
-
-                    storageRef.downloadUrl.addOnSuccessListener { uri ->
-                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
-                        spot.imgURL = uri.toString()
-                    }.addOnFailureListener {
-                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
-                    }
+//
+//                    // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
+//                    val storageRef = FirebaseStorage.getInstance().reference.child("img_spot/${snapshot.key}/image.jpg")
+//
+//                    storageRef.downloadUrl.addOnSuccessListener { uri ->
+//                        // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
+//                        spot.imgURL = uri.toString()
+//                    }.addOnFailureListener {
+//                        // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+//                    }
                 }
 
                 // Gunakan spotList dalam RecyclerViewAdapter
                 val adapter = RecyclerSpotManvcingAdapter(spotList)
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//                val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//                recyclerView.layoutManager = layoutManager
                 recyclerView.adapter = adapter
             }
 

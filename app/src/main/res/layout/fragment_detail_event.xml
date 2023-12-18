@@ -1,14 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.DetailEventFragment">
+    android:background="#1D267D"
+    android:layout_height="match_parent">
+    <!-- fragment_detail_location.xml -->
+    <LinearLayout
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:padding="16dp"
 
-</FrameLayout>
+        tools:context=".fragment.DetailEventFragment">
+
+        <ImageView
+            android:id="@+id/img_detail_event"
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_edt"
+            android:src="@drawable/ic_image" />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#D4ADFC"
+            android:fontFamily="@font/cairo_black"
+            android:text="Judul Acara :"
+
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvjudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/custom_edt2"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+
+            android:textSize="18sp"
+            android:fontFamily="@font/cairo_black"
+
+            android:text="Alamat :"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvAlamatevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="@color/black"
+
+            android:textSize="16sp"
+            android:background="@drawable/custom_edt2"
+            android:layout_marginStart="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+
+            android:textSize="18sp"
+            android:text="Deskripsi :"
+            android:fontFamily="@font/cairo_black"
+
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDeskripsievent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+
+
+            android:background="@drawable/custom_edt2"
+            android:layout_marginStart="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+
+            android:textSize="18sp"
+            android:text="Link Google Maps:"
+
+            android:fontFamily="@font/cairo_black"
+
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLinkevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:linksClickable="true"
+            android:autoLink="web|email"
+            android:textColorLink="@color/black"
+
+            android:background="@drawable/custom_edt2"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="16dp" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bEditevent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/cairo_black"
+                android:textColor="@color/black"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#D4ADFC"
+                android:layout_marginBottom="10dp"
+                android:text="Edit" />
+
+            <Button
+                android:id="@+id/bHapusevent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/cairo_black"
+                android:textColor="@color/black"
+                android:backgroundTint="#D4ADFC"
+
+                android:text="Hapus" />
+
+        </LinearLayout>
+
+
+        <!-- Tambahkan view lainnya sesuai dengan data yang ingin ditampilkan -->
+
+    </LinearLayout>
+</ScrollView>

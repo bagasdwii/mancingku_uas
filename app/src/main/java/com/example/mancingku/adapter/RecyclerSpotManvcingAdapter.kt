@@ -24,12 +24,8 @@ class RecyclerSpotManvcingAdapter(private val spotList: List<modelSpotMancing>) 
         holder.bind(spot)
         holder.itemView.setOnClickListener {
             // Mengakses NavController dan melakukan navigasi ke DetailFragment dengan argumen yang diperlukan
-            val action = SpotPancingFragmentDirections.actionSpotPancingFragmentToDetailFragment(
-                spot.namaspot,
-                spot.alamat,
-                spot.deskripsispot,
-                spot.linkspot,
-                spot.imgURL
+            val action = SpotPancingFragmentDirections.actionSpotPancingFragmentToDetailFragment2(
+                spot
             )
             it.findNavController().navigate(action)
         }

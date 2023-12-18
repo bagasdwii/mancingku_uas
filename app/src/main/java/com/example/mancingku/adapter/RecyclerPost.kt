@@ -13,6 +13,7 @@ import com.example.mancingku.fragment.tokoFragmentDirections
 import com.example.mancingku.model.modelPost
 
 import com.example.mancingku.model.modelToko
+import com.google.firebase.storage.FirebaseStorage
 
 class RecyclerPost(private val postList: List<modelPost>) :
     RecyclerView.Adapter<RecyclerPost.PostViewHolder>() {
@@ -51,13 +52,29 @@ class RecyclerPost(private val postList: List<modelPost>) :
 
 
         fun bind(post: modelPost) {
+            val storageRef = FirebaseStorage.getInstance().reference.child("img_post/${post.key}/image.jpg")
+            val storageRefProfil = FirebaseStorage.getInstance().reference.child("img_user/${post.username}")
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
+                Glide.with(itemView)
+                    .load(uri.toString()) // post.profil berisi URL gambar
+                    .into(gambar) // profil adalah ImageView
+
+            }.addOnFailureListener {
+                gambar.setImageDrawable(null)
+                // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+            }
+            storageRefProfil.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(itemView)
+                    .load(uri.toString()) // post.profil berisi URL gambar
+                    .into(profil) // profil adalah ImageView
+            }.addOnFailureListener {
+                gambar.setImageDrawable(null)
+                // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+            }
             txtusername.text = post.username
-            Glide.with(itemView)
-                .load(post.profil) // post.profil berisi URL gambar
-                .into(profil) // profil adalah ImageView
-            Glide.with(itemView)
-                .load(post.gambar) // post.profil berisi URL gambar
-                .into(gambar) // profil adalah ImageView
+
+
             txtStatus.text = post.status
             txtLink.text = post.linkpost
 

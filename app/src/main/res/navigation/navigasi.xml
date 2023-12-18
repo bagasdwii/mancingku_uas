@@ -11,8 +11,8 @@
         android:label="Spot Mancing"
         tools:layout="@layout/fragment_spot_pancing" >
         <action
-            android:id="@+id/action_spotPancingFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_spotPancingFragment_to_detailFragment2"
+            app:destination="@id/detailFragment2" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -25,26 +25,35 @@
         <action
             android:id="@+id/action_mainFragment_to_tokoFragment"
             app:destination="@id/tokoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailEventFragment"
+            app:destination="@id/detailEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.mancingku.fragment.DetailFragment"
         android:label="Detail Lokasi"
         tools:layout="@layout/fragment_detail" >
-        <argument
-            android:name="namaTempat"
-            app:argType="string" />
-        <argument
-            android:name="alamat"
-            app:argType="string" />
-        <argument
-            android:name="deskripsi"
-            app:argType="string" />
-        <argument android:name="linkMaps"
-            app:argType="string" />
-        <argument
-            android:name="imgDetail"
-            app:argType="string" />
+<!--        <argument-->
+<!--            android:name="namaTempat"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="alamat"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="deskripsi"-->
+<!--            app:argType="string" />-->
+<!--        <argument android:name="linkMaps"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="imgDetail"-->
+<!--            app:argType="string" />-->
+
+
+            <argument
+                android:name="toko"
+                app:argType="com.example.mancingku.model.modelToko" />
+
     </fragment>
     <fragment
         android:id="@+id/tokoFragment"
@@ -55,4 +64,23 @@
             android:id="@+id/action_tokoFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailFragment2"
+        android:name="com.example.mancingku.fragment.DetailFragment2"
+        android:label="Detail Lokasi"
+        tools:layout="@layout/fragment_detail2" >
+        <argument
+            android:name="spot"
+            app:argType="com.example.mancingku.model.modelSpotMancing" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailEventFragment"
+        android:name="com.example.mancingku.fragment.DetailEventFragment"
+        android:label="Detail Event"
+        tools:layout="@layout/fragment_detail_event" >
+        <argument
+            android:name="event"
+            app:argType="com.example.mancingku.model.modelEvent" />
+    </fragment>
+
 </navigation>

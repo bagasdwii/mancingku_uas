@@ -4,20 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#1D267D"
     android:padding="30dp"
     tools:context=".activity.Login">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/cairo_extrabold"
+        android:text=" INFORMASI AKUN "
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_above="@+id/cvUser"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="9dp" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@color/white"
-        app:cardCornerRadius="20dp">
+        android:background="#0C134F"
+        app:cardCornerRadius="20dp"
+        android:id="@+id/cvUser">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="488dp"
+            android:background="#0C134F"
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="30dp">
 
@@ -27,18 +46,6 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_account" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/black"
-                android:text="Profile"
-                android:textAlignment="center"
-
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,6 +58,7 @@
                     android:id="@+id/edt_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_semibold"
                     android:text="Email@mail.com"
                     android:textSize="10dp" />
 
@@ -79,37 +87,47 @@
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/cairo_semibold"
                 android:gravity="center"
                 android:hint="Name"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/btn_verify"
-                android:layout_width="match_parent"
+                android:layout_width="220dp"
+
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
+                android:backgroundTint="#D4ADFC"
+                android:fontFamily="@font/cairo_semibold"
                 android:text="Email Verification" />
 
             <Button
                 android:id="@+id/btn_changePass"
-                android:layout_width="match_parent"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
+                android:backgroundTint="#D4ADFC"
+                android:fontFamily="@font/cairo_semibold"
                 android:text="Change Password" />
+
             <Button
                 android:id="@+id/btn_admin"
-                android:layout_width="match_parent"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF8107"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#D4ADFC"
+                android:fontFamily="@font/cairo_semibold"
                 android:text="Admin" />
 
             <Button
                 android:id="@+id/btn_logout"
-                android:layout_width="match_parent"
+                android:layout_width="202dp"
+
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="#D4ADFC"
+                android:fontFamily="@font/cairo_semibold"
                 android:text="Logout" />
 
         </LinearLayout>
@@ -124,6 +142,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="20dp"
+        android:background="@drawable/corner"
+        android:backgroundTint="#5C469C"
         android:visibility="gone"
         app:cardCornerRadius="20dp"
         app:cardElevation="7dp">
@@ -132,6 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+
             android:padding="20dp">
 
             <TextView
@@ -139,6 +160,7 @@
                 android:layout_height="wrap_content"
                 android:text="Current Password"
                 android:textAlignment="center"
+                android:fontFamily="@font/cairo_extrabold"
 
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -153,6 +175,7 @@
                     android:id="@+id/edt_currentPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_semibold"
                     android:hint="Current Password"
                     android:inputType="textPassword"
                     app:passwordToggleEnabled="true" />
@@ -170,6 +193,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/cairo_semibold"
                     android:backgroundTint="@color/black"
                     android:text="Cancel" />
 
@@ -179,7 +204,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-
+                    android:fontFamily="@font/cairo_semibold"
+                    android:backgroundTint="#D4ADFC"
                     android:text="Confirm" />
 
             </LinearLayout>
@@ -194,8 +220,10 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
-        android:visibility="gone"
+        android:background="@drawable/corner"
+        android:backgroundTint="#5C469C"
         app:cardCornerRadius="20dp"
+        android:visibility="gone"
         app:cardElevation="7dp">
 
         <LinearLayout
@@ -209,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:text="New Password"
                 android:textAlignment="center"
-
+                android:fontFamily="@font/cairo_extrabold"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -217,25 +245,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+
+                app:passwordToggleTint="@color/black"
                 app:passwordToggleEnabled="true">
 
                 <EditText
+
                     android:id="@+id/edt_newPass"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:hint="New Password"
+                    android:background="@drawable/custom_edt"
+                    android:backgroundTint="#d9d9d9"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/black"
+                    android:fontFamily="@font/cairo_semibold"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:passwordToggleTint="@color/black"
                 android:layout_marginVertical="10dp"
                 app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/edt_confirmPass"
                     android:layout_width="match_parent"
+                    android:background="@drawable/custom_edt"
+                    android:backgroundTint="#d9d9d9"
+                    android:fontFamily="@font/cairo_semibold"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
                     android:inputType="textPassword" />
@@ -252,15 +291,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="2"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/cairo_semibold"
                     android:backgroundTint="@color/black"
                     android:text="Cancel" />
 
                 <Button
                     android:id="@+id/btn_newChange"
+                    android:fontFamily="@font/cairo_semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:backgroundTint="#D4ADFC"
 
                     android:text="Change" />
 

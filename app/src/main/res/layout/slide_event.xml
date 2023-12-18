@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cvListLocation"
+    android:id="@+id/cvslide"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    app:cardElevation="5dp"
+    android:padding="10dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        >
+
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:id="@+id/imgevent"
+            android:layout_height="160dp"
             android:layout_weight="0"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/img_white"
-            app:tint="@color/black" />
+            android:src="@drawable/img_white" />
 
         <TextView
             android:id="@+id/tvNamaevent"
@@ -28,11 +32,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/cairo_black"
             android:gravity="center"
             android:hint="Nama Event"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="16dp" />
     </LinearLayout>
 
 

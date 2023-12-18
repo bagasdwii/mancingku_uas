@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!-- fragment_detail_location.xml -->
+    <!-- fragment_detail_location.xml -->
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:background="#1D267D"
-        tools:context=".fragment.DetailFragment">
+        tools:context=".fragment.DetailFragment2">
 
 
         <TextView
@@ -29,7 +29,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvNamaTempat"
+            android:id="@+id/tvNamaTempat2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -51,7 +51,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvAlamatlokasi"
+            android:id="@+id/tvAlamatlokasi2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -60,7 +60,7 @@
             android:textSize="16sp"
             android:background="@drawable/custom_edt2"
             android:layout_marginStart="10dp"
-          />
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvDeskripsiTempat"
+            android:id="@+id/tvDeskripsiTempat2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -85,7 +85,7 @@
 
             android:background="@drawable/custom_edt2"
             android:layout_marginStart="10dp"
-          />
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvLinkTempat"
+            android:id="@+id/tvLinkTempat2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -115,7 +115,7 @@
             android:layout_marginBottom="16dp" />
 
         <ImageView
-            android:id="@+id/img_detail"
+            android:id="@+id/img_detail2"
             android:layout_width="match_parent"
             android:layout_height="154dp"
             android:layout_marginBottom="10dp"
@@ -129,7 +129,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bEdit"
+                android:id="@+id/bEdit2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -141,7 +141,7 @@
                 android:text="Edit" />
 
             <Button
-                android:id="@+id/bHapus"
+                android:id="@+id/bHapus2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -154,7 +154,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/bPetunjukarah"
+            android:id="@+id/bPetunjukarah2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo_black"

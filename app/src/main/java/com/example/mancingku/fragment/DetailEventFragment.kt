@@ -5,56 +5,88 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.mancingku.R
+import com.example.mancingku.databinding.FragmentDetail2Binding
+import com.example.mancingku.databinding.FragmentDetailEventBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailEventFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailEventFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentDetailEventBinding? = null
+    private val binding get() = _binding!!
+    lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_event, container, false)
+        _binding = FragmentDetailEventBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailEventFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailEventFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val admin = "untukrandom130@gmail.com"
+        //kondisi user sedang login atau tidak
+
+        //kondisi email sudah verifikasi atau belum
+        if (user != null && user.email == admin) {
+            binding.bEditevent.visibility = View.VISIBLE
+            binding.bHapusevent.visibility = View.VISIBLE
+
+
+        } else {
+            binding.bEditevent.visibility = View.GONE
+            binding.bHapusevent.visibility = View.GONE
+
+        }
+
+        // Mengambil argumen yang dikirim dari navigasi
+        val event = DetailEventFragmentArgs.fromBundle(requireArguments()).event
+//        val namaTempat = arguments?.getString("namaTempat")
+//        val alamat = arguments?.getString("alamat")
+//        val deskripsi = arguments?.getString("deskripsi")
+//        val linkMaps = arguments?.getString("linkMaps")
+//        val imgDetail = arguments?.getString("imgDetail")
+
+        // Menemukan TextView berdasarkan ID dari layout
+        val tvNamaevent = binding.tvjudul
+        val tvAlamatevent = binding.tvAlamatevent
+        val tvDeskripsievent = binding.tvDeskripsievent
+        val tvLinkevent = binding.tvLinkevent
+        val img = binding.imgDetailEvent
+
+        // Set nilai dari argumen ke TextView yang sesuai
+        tvNamaevent.text = event.title
+        tvAlamatevent.text = event.alamat
+        tvDeskripsievent.text = event.deskripsievent
+        tvLinkevent.text = event.linkevent
+//        imgDetail?.let {
+//            Glide.with(requireContext())
+//                .load(it) // it adalah URL gambar
+//                .into(img)
+//        }
+
+        // Ambil URL gambar sesuai dengan kunci yang ada di Firebase Realtime Database
+        val storageRef =
+            FirebaseStorage.getInstance().reference.child("img_event/${event.id}/image.jpg")
+
+        storageRef.downloadUrl.addOnSuccessListener { uri ->
+            // Simpan URL gambar ke properti imgURL pada objek spot yang sesuai
+            event.imgURL = uri.toString()
+            Glide.with(requireContext())
+                .load(event.imgURL) // it adalah URL gambar
+                .into(img)
+        }.addOnFailureListener {
+            // Handle error jika gagal mengambil URL gambar dari Cloud Storage
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

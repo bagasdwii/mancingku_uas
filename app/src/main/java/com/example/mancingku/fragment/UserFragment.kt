@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.mancingku.activity.Login
@@ -71,7 +72,19 @@ class UserFragment : Fragment() {
         binding.btnChangePass.setOnClickListener {
             changePass()
         }
+        binding.btnAdmin.setOnClickListener{
+            callwa()
+        }
     }
+
+    private fun callwa() {
+        val url = "https://wa.link/l7mqje"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
+
+    }
+
     private fun changePass() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser

@@ -4,119 +4,171 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1D267D"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.MapsFragment">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <!-- Ucapan Selamat Datang -->
-        <TextView
-            android:id="@+id/welcomeMessageTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Selamat datang, [Nama Pengguna]!"
-            android:textSize="18sp" />
-
-        <!-- Bagian Atas: Carousel -->
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/carousel"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:iss_auto_cycle="true"
-            app:iss_delay="0"
-            app:iss_period="3000"
-            app:iss_placeholder="@color/black"
-            app:iss_error_image="@color/white"
-            app:iss_corner_radius="20"
-            android:layout_margin="10dp"
-            >
-            <Button
-                android:id="@+id/btn_add"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/ic_buttton_add"
-                android:text="" />
-        </com.denzcoskun.imageslider.ImageSlider>
-
-
-        <!-- Bagian Tengah: CardBox dengan 2 Button -->
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <!-- Ucapan Selamat Datang -->
+            <TextView
+                android:id="@+id/welcomeMessageTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textStyle="italic"
+                android:fontFamily="@font/cairo_extrabold"
+                android:text="Halo [User]!"
+                android:textSize="24sp" />
 
-                <LinearLayout
+            <TextView
+                android:id="@+id/welcomeMessageTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:fontFamily="@font/cairo_black"
+                android:text="Selamat Datang Di Inpo Pancing Terbaik"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <!-- Bagian Atas: Carousel -->
+            <!-- Bagian Atas: Carousel -->
+
+            <!-- Bagian Tengah: CardBox dengan 2 Button -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!-- Bagian Tengah: CardBox dengan 2 Button -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEvent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/slide_event"/>
 
-                    <!-- Left Button -->
-                    <Button
-                        android:id="@+id/spotMancing"
-                        android:layout_width="0dp"
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_margin="40dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/ic_buttton_add"
+                    android:text="" />
+                <!-- Button di dalam RecyclerView -->
+
+            </FrameLayout>
+
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/rvEvent"-->
+<!--                android:layout_width="match_parent"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                tools:listitem="@layout/slide_event"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+
+                android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="4dp"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="24dp"
-                        android:text="SPOT MANCING"
-                        android:textSize="18sp" />
+                        android:orientation="horizontal">
 
-                    <!-- Right Button -->
-                    <Button
-                        android:id="@+id/tokoPancing"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="4dp"
-                        android:paddingStart="24dp"
-                        android:paddingEnd="24dp"
-                        android:text="TOKO PANCIMG"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        <!-- Left Button -->
+                        <Button
+                            android:id="@+id/spotMancing"
+                            android:layout_width="0dp"
 
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/group_29"
+                            android:paddingStart="24dp"
+                            android:paddingEnd="24dp"
+                            android:textSize="18sp" />
+
+                        <!-- Right Button -->
+                        <Button
+                            android:id="@+id/tokoPancing"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/group_31"
+                            android:paddingStart="24dp"
+                            android:paddingEnd="24dp"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <!-- Bagian Bawah: About Section -->
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="257dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="Manfaat Memancing"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Manfaat Memancing"
+                    android:textSize="12sp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/cairo_black"
+                    android:id="@+id/text2"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_edt2"
+                android:fontFamily="@font/cairo_semibold"
+                android:gravity="center"
+                android:text="Jangan biarkan kamu gabut sendirian
+Ajaklah temanmu gabut bersama di Pemancingan"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
         </LinearLayout>
+    </ScrollView>
 
-        <!-- Bagian Bawah: About Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Tentang Aplikasi"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Deskripsi singkat tentang aplikasi ini."
-            android:textSize="16sp" />
-    </LinearLayout>
     <androidx.cardview.widget.CardView
         android:id="@+id/slotEvent"
         android:layout_width="match_parent"
